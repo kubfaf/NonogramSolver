@@ -10,8 +10,7 @@ public class Main {
 
         //TODO some function called check rules (x,y)
 
-        //TODO guessing timestamps?
-        //TOOD maybe something like history of all he moves - leads to list of grids - DONT FLIPPING FORGET TO CLODE THE WHOLE THING
+        //TOOD maybe something like history of all he moves - leads to a list of grids - DON'T FLIPPING FORGET TO CLONE THE WHOLE THING
 
         //go through every row, then go through every column
 
