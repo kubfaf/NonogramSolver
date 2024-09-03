@@ -19,6 +19,66 @@ public class Grid {
     void solve() {
 
 
+
+
+    }
+
+    boolean isContradicting(int x){
+
+        Square[] columnToTest = getGridColumn(x);
+        int[] info = infoCols.get(x);
+
+        //find the first one, then the next one ....
+        //there must be at least one space between them
+        //then check if the rest can fit
+
+        int lastIndexChecked = 0;
+        for (int i = 0; i < info.length; i++) {
+
+            int howManyToFindInARow = info[i];
+            int firstIndexOfBlackSquare = 0;
+            int lastIndexOfBlackSquare = 0;
+
+            for (; lastIndexChecked < columnToTest.length; lastIndexChecked++) {
+                if(columnToTest[lastIndexChecked].status == SquareStatus.BLACK){
+                    //FOUND THE FIRST ONE
+                    firstIndexOfBlackSquare = lastIndexChecked;
+                    break;
+                }
+            }
+
+            //find the last piece
+            for (int j = lastIndexChecked; j < columnToTest.length; j++) {
+                //the next one has to be empty, or it has to be an edge (the end of an array)
+                if((columnToTest[lastIndexChecked].status == SquareStatus.BLACK) && (lastIndexChecked == columnToTest.length-1 ||  columnToTest[lastIndexChecked + 1 ].status == SquareStatus.WHITE )){
+                    //FOUND THE LAST ONE
+                    lastIndexOfBlackSquare = lastIndexChecked;
+                    break;
+                }
+            }
+
+
+
+
+
+            //can be smaller or equal, but mustn't be bigger
+            if()
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+        return false;
     }
 
     boolean isConstraintSatisfied(int x, int y) {
