@@ -51,6 +51,9 @@ public class Grid {
             //FIXME what if the thing is not finished yet?
             //FIXME what if i am looking for 4 but i only find 2?
 
+            //FIXME ALSO what if i find nothing? for example empty column?
+
+
             //find the last piece
             for (int j = lastIndexChecked; j < columnToTest.length; j++) {
                 //the next one has to be empty, or it has to be an edge (the end of an array)
@@ -61,6 +64,7 @@ public class Grid {
                 }
             }
 
+            //TODO is this actually correct? if they are equal, it should be length of 1 right?
             //can be smaller or equal, but mustn't be bigger
             if(lastIndexOfBlackSquare - firstIndexOfBlackSquare > howManyToFindInARow){
                 //it is bigger
