@@ -47,6 +47,10 @@ public class Grid {
                 }
             }
 
+            //FIXME mabye bug? do i have to check the same one again for that bs to work?
+            //FIXME what if the thing is not finished yet?
+            //FIXME what if i am looking for 4 but i only find 2?
+
             //find the last piece
             for (int j = lastIndexChecked; j < columnToTest.length; j++) {
                 //the next one has to be empty, or it has to be an edge (the end of an array)
@@ -57,15 +61,12 @@ public class Grid {
                 }
             }
 
-
-
-
-
             //can be smaller or equal, but mustn't be bigger
-            if()
-
-
-
+            if(lastIndexOfBlackSquare - firstIndexOfBlackSquare > howManyToFindInARow){
+                //it is bigger
+                return false;
+            }
+            //then there has to be at least ONE FREE SPACE (unless the end of an array)
 
 
         }
@@ -73,12 +74,7 @@ public class Grid {
 
 
 
-
-
-
-
-
-        return false;
+        return true;
     }
 
     boolean isConstraintSatisfied(int x, int y) {
