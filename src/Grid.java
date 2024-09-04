@@ -55,9 +55,9 @@ public class Grid {
 
 
             //find the last piece
-            for (int j = lastIndexChecked; j < columnToTest.length; j++) {
+            for (; lastIndexChecked < columnToTest.length; lastIndexChecked++) {
                 //the next one has to be empty, or it has to be an edge (the end of an array)
-                if((columnToTest[lastIndexChecked].status == SquareStatus.BLACK) && (lastIndexChecked == columnToTest.length-1 ||  columnToTest[lastIndexChecked + 1 ].status == SquareStatus.WHITE )){
+                if((columnToTest[lastIndexChecked].status == SquareStatus.BLACK) && (lastIndexChecked+1 == columnToTest.length ||  columnToTest[lastIndexChecked + 1 ].status != SquareStatus.BLACK )){
                     //FOUND THE LAST ONE
                     lastIndexOfBlackSquare = lastIndexChecked;
                     break;
