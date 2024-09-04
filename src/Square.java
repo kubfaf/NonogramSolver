@@ -1,7 +1,6 @@
 enum SquareStatus {
 
     WHITE, BLACK, EMPTY
-
 }
 
 
@@ -17,5 +16,8 @@ public class Square {
         this.status = status;
     }
 
-
+    @Override
+    public String toString() {
+        return status.name();
+    }
 }

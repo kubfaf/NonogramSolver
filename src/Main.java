@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -17,7 +18,23 @@ public class Main {
 
         Grid grid = createGrid(NAME_OF_FILE);
 
-        grid.solve();
+
+//        grid.infoCols.set(0, new int[]{0});
+
+        int[] firstColInfo = grid.infoCols.get(0);
+        Square[] gridCol = grid.getGridColumn(0);
+
+        for (int i = 2; i < 3; i++) {
+            gridCol[i].status = SquareStatus.BLACK;
+        }
+        for (int i = 0; i < 2; i++) {
+            gridCol[i].status = SquareStatus.WHITE;
+        }
+
+        System.out.println("firstColInfo = " + Arrays.toString(firstColInfo));
+        System.out.println("grid.isContradicting(x) = " + grid.isContradicting(0));
+
+//        grid.solve();
 
 
 

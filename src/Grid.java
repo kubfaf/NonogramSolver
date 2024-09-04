@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Grid {
@@ -28,6 +29,8 @@ public class Grid {
         Square[] columnToTest = getGridColumn(x);
         int[] info = infoCols.get(x);
 
+        System.out.println("columnToTest = " + Arrays.toString(columnToTest));
+
         //find the first one, then the next one ....
         //there must be at least one space between them
         //then check if the rest can fit
@@ -36,10 +39,20 @@ public class Grid {
         for (int i = 0; i < info.length; i++) {
 
             int howManyToFindInARow = info[i];
-            int firstIndexOfBlackSquare = 0;
-            int lastIndexOfBlackSquare = 0;
+            int firstIndexOfBlackSquare = -1;
+            int lastIndexOfBlackSquare = -1;
 
             for (; lastIndexChecked < columnToTest.length; lastIndexChecked++) {
+
+                //also check for blank squares. If they are blank it means that the row after is not generated yet.
+                if (columnToTest[lastIndexChecked].status == SquareStatus.EMPTY){
+                    //TODO check if the rest can still fit
+                    //TODO maybe break the main for loop?
+
+                    return false;
+                }
+
+
                 if(columnToTest[lastIndexChecked].status == SquareStatus.BLACK){
                     //FOUND THE FIRST ONE
                     firstIndexOfBlackSquare = lastIndexChecked;
@@ -47,7 +60,6 @@ public class Grid {
                 }
             }
 
-            //FIXME mabye bug? do i have to check the same one again for that bs to work?
             //FIXME what if the thing is not finished yet?
             //FIXME what if i am looking for 4 but i only find 2?
 
@@ -64,18 +76,46 @@ public class Grid {
                 }
             }
 
+//            //FIXME this should never be true.... RIGHT???????
+//            if(lastIndexOfBlackSquare == -1){
+//                lastIndexOfBlackSquare = columnToTest.length;
+//            }
+
             //can be smaller or equal, but mustn't be bigger
             // +1 (found the same index twic - the block is size 1. But lastIndexOfBlackSquare - firstIndexOfBlackSquare would say 0)
             if((lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1 ) > howManyToFindInARow){
                 //it is bigger
-                return false;
+                System.out.println("lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1 = " + (lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1));
+                System.out.println("here");
+                return true;
             }
+            //TODO what if it does not find anything? Will it say it found length 1?  Do i have to check for it or something?
             //then there has to be at least ONE FREE SPACE (unless the end of an array)
+
+
+
+
+            //I have to find a space, but only if the last one in not at the end
+
+            //if the last index is at the end, then it is fine
+            //if NOT, then check if the next one on the right is empty or white (not black)
+
+            if((lastIndexOfBlackSquare + 1) == columnToTest.length){
+
+            }else {
+                if((columnToTest[lastIndexOfBlackSquare+1].status == SquareStatus.WHITE || columnToTest[lastIndexOfBlackSquare+1].status == SquareStatus.EMPTY)){
+
+                }else {
+                    return true;
+                }
+            }
+
+
 
 
         }
 
-        return true;
+        return false;
     }
 
     boolean isConstraintSatisfied(int x, int y) {
