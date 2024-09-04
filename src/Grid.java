@@ -36,7 +36,7 @@ public class Grid {
         //then check if the rest can fit
 
         int lastIndexChecked = 0;
-        for (int i = 0; i < info.length; i++) {
+        mainLoop:for (int i = 0; i < info.length; i++) {
 
             int howManyToFindInARow = info[i];
             int firstIndexOfBlackSquare = -1;
@@ -48,8 +48,7 @@ public class Grid {
                 if (columnToTest[lastIndexChecked].status == SquareStatus.EMPTY){
                     //TODO check if the rest can still fit
                     //TODO maybe break the main for loop?
-
-                    return false;
+                    break mainLoop;
                 }
 
 
@@ -76,38 +75,31 @@ public class Grid {
                 }
             }
 
-//            //FIXME this should never be true.... RIGHT???????
-//            if(lastIndexOfBlackSquare == -1){
-//                lastIndexOfBlackSquare = columnToTest.length;
-//            }
-
             //can be smaller or equal, but mustn't be bigger
             // +1 (found the same index twic - the block is size 1. But lastIndexOfBlackSquare - firstIndexOfBlackSquare would say 0)
             if((lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1 ) > howManyToFindInARow){
                 //it is bigger
-                System.out.println("lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1 = " + (lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1));
-                System.out.println("here");
                 return true;
             }
             //TODO what if it does not find anything? Will it say it found length 1?  Do i have to check for it or something?
+
             //then there has to be at least ONE FREE SPACE (unless the end of an array)
-
-
-
-
             //I have to find a space, but only if the last one in not at the end
 
             //if the last index is at the end, then it is fine
             //if NOT, then check if the next one on the right is empty or white (not black)
-
             if(((lastIndexOfBlackSquare + 1) == columnToTest.length) && (columnToTest[lastIndexOfBlackSquare+1].status != SquareStatus.BLACK)){
                 return true;
             }
-
-
-
-
         }
+
+        //TODO check if the remaining blocks can fit.
+        //TODO IF the last block is not finished, it needs to be finished before counting the rest
+        //TODO also i think i need to know how many of them are remaining.
+        //TODO also i need to know if the last one is fully placed or not
+        //TODO if they can't fit, then return false
+        //TODO if they can fit, return true
+
 
         return false;
     }

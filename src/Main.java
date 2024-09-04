@@ -8,14 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        //TODO some function called check rules (x,y)
-
-        //TOOD maybe something like history of all he moves - leads to a list of grids - DON'T FLIPPING FORGET TO CLONE THE WHOLE THING
-
-        //go through every row, then go through every column
-
-
+        //Create grid from a file
         Grid grid = createGrid(NAME_OF_FILE);
 
 
@@ -24,12 +17,16 @@ public class Main {
         int[] firstColInfo = grid.infoCols.get(0);
         Square[] gridCol = grid.getGridColumn(0);
 
-        for (int i = 2; i < 3; i++) {
+        for (int i = 2; i < 5; i++) {
             gridCol[i].status = SquareStatus.BLACK;
         }
         for (int i = 0; i < 2; i++) {
             gridCol[i].status = SquareStatus.WHITE;
         }
+        gridCol[5].status = SquareStatus.WHITE;
+        gridCol[6].status = SquareStatus.WHITE;
+
+        gridCol[7].status = SquareStatus.BLACK;
 
         System.out.println("firstColInfo = " + Arrays.toString(firstColInfo));
         System.out.println("grid.isContradicting(x) = " + grid.isContradicting(0));
