@@ -100,14 +100,8 @@ public class Grid {
             //if the last index is at the end, then it is fine
             //if NOT, then check if the next one on the right is empty or white (not black)
 
-            if((lastIndexOfBlackSquare + 1) == columnToTest.length){
-
-            }else {
-                if((columnToTest[lastIndexOfBlackSquare+1].status == SquareStatus.WHITE || columnToTest[lastIndexOfBlackSquare+1].status == SquareStatus.EMPTY)){
-
-                }else {
-                    return true;
-                }
+            if(((lastIndexOfBlackSquare + 1) == columnToTest.length) && (columnToTest[lastIndexOfBlackSquare+1].status != SquareStatus.BLACK)){
+                return true;
             }
 
 
