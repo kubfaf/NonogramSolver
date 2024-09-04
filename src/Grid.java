@@ -64,9 +64,9 @@ public class Grid {
                 }
             }
 
-            //TODO is this actually correct? if they are equal, it should be length of 1 right?
             //can be smaller or equal, but mustn't be bigger
-            if(lastIndexOfBlackSquare - firstIndexOfBlackSquare > howManyToFindInARow){
+            // +1 (found the same index twic - the block is size 1. But lastIndexOfBlackSquare - firstIndexOfBlackSquare would say 0)
+            if((lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1 ) > howManyToFindInARow){
                 //it is bigger
                 return false;
             }
@@ -74,9 +74,6 @@ public class Grid {
 
 
         }
-
-
-
 
         return true;
     }
