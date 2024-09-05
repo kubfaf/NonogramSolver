@@ -12,7 +12,7 @@ public class Main {
         Grid grid = createGrid(NAME_OF_FILE);
 
 
-//        grid.infoCols.set(0, new int[]{0});
+        grid.infoCols.set(0, new int[]{0});
 
         int[] firstColInfo = grid.infoCols.get(0);
         Square[] gridCol = grid.getGridColumn(0);
@@ -20,13 +20,13 @@ public class Main {
         for (int i = 2; i < 5; i++) {
             gridCol[i].status = SquareStatus.BLACK;
         }
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 10; i++) {
             gridCol[i].status = SquareStatus.WHITE;
         }
         gridCol[5].status = SquareStatus.WHITE;
         gridCol[6].status = SquareStatus.WHITE;
 
-        gridCol[7].status = SquareStatus.BLACK;
+        //gridCol[7].status = SquareStatus.BLACK;
 
         System.out.println("firstColInfo = " + Arrays.toString(firstColInfo));
         System.out.println("grid.isContradicting(x) = " + grid.isContradicting(0));

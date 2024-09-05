@@ -29,6 +29,9 @@ public class Grid {
         Square[] columnToTest = getGridColumn(x);
         int[] info = infoCols.get(x);
 
+        int howManyStarts = 0;
+        int howManyEnds = 0;
+
         System.out.println("columnToTest = " + Arrays.toString(columnToTest));
 
         //find the first one, then the next one ....
@@ -36,13 +39,16 @@ public class Grid {
         //then check if the rest can fit
 
         int lastIndexChecked = 0;
+        int firstIndexOfBlackSquare = -1;
         mainLoop:for (int i = 0; i < info.length; i++) {
 
             int howManyToFindInARow = info[i];
-            int firstIndexOfBlackSquare = -1;
-            int lastIndexOfBlackSquare = -1;
+            firstIndexOfBlackSquare = -1;
+            int lastIndexOfBlackSquare = -2;
 
             for (; lastIndexChecked < columnToTest.length; lastIndexChecked++) {
+
+                //FIXME WHAT IS EVERYTHING IS WHITE
 
                 //also check for blank squares. If they are blank it means that the row after is not generated yet.
                 if (columnToTest[lastIndexChecked].status == SquareStatus.EMPTY){
@@ -55,6 +61,7 @@ public class Grid {
                 if(columnToTest[lastIndexChecked].status == SquareStatus.BLACK){
                     //FOUND THE FIRST ONE
                     firstIndexOfBlackSquare = lastIndexChecked;
+                    howManyStarts++;
                     break;
                 }
             }
@@ -71,12 +78,13 @@ public class Grid {
                 if((columnToTest[lastIndexChecked].status == SquareStatus.BLACK) && (lastIndexChecked+1 == columnToTest.length ||  columnToTest[lastIndexChecked + 1 ].status != SquareStatus.BLACK )){
                     //FOUND THE LAST ONE
                     lastIndexOfBlackSquare = lastIndexChecked;
+                    howManyEnds++;
                     break;
                 }
             }
 
             //can be smaller or equal, but mustn't be bigger
-            // +1 (found the same index twic - the block is size 1. But lastIndexOfBlackSquare - firstIndexOfBlackSquare would say 0)
+            // +1 (found the same index twice - the block is size 1. But lastIndexOfBlackSquare - firstIndexOfBlackSquare would say 0)
             if((lastIndexOfBlackSquare - firstIndexOfBlackSquare + 1 ) > howManyToFindInARow){
                 //it is bigger
                 return true;
@@ -99,6 +107,13 @@ public class Grid {
         //TODO also i need to know if the last one is fully placed or not
         //TODO if they can't fit, then return false
         //TODO if they can fit, return true
+
+        //if they are NOT equal, then move 'lastIndexChecked' to the imaginary end of the unfinished block.
+        if(howManyStarts != howManyEnds){
+            //TODO
+
+
+        }
 
 
         return false;
