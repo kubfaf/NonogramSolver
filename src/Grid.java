@@ -48,7 +48,7 @@ public class Grid {
 
             for (; lastIndexChecked < columnToTest.length; lastIndexChecked++) {
 
-                //FIXME WHAT IS EVERYTHING IS WHITE
+                //FIXME WHAT IF EVERYTHING IS WHITE
 
                 //also check for blank squares. If they are blank it means that the row after is not generated yet.
                 if (columnToTest[lastIndexChecked].status == SquareStatus.EMPTY){
